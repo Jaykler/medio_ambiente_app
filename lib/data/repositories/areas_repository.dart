@@ -1,4 +1,5 @@
 import 'package:medio_ambiente_app/core/services/api_service.dart';
+import 'package:medio_ambiente_app/core/constants/endpoints.dart';
 import 'package:medio_ambiente_app/models/area_protegida.dart';
 
 class AreasRepository {
@@ -6,7 +7,7 @@ class AreasRepository {
   AreasRepository(this.api);
 
   Future<List<AreaProtegida>> fetchAreas() async {
-    final json = await api.getJson('api/areas');
+    final json = await api.getJson(Endpoints.areas);
     final list = (json['data'] ?? json['areas'] ?? []) as List;
     return list.map((e) => AreaProtegida.fromJson(e as Map<String, dynamic>)).toList();
   }

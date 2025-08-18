@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:medio_ambiente_app/core/services/api_service.dart';
 import 'package:medio_ambiente_app/core/services/location_service.dart';
+import 'package:medio_ambiente_app/data/repositories/reportes_repository.dart';
 import 'package:medio_ambiente_app/models/reporte.dart';
 
 class ReportarDanioPage extends StatefulWidget {
@@ -53,7 +55,7 @@ class _ReportarDanioPageState extends State<ReportarDanioPage> {
 
   String? _req(String? v) => (v == null || v.trim().isEmpty) ? 'Requerido' : null;
 
-  void _submit() {
+  Future<void> _submit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     if (_lat == null) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Ubicación no disponible')));
@@ -62,6 +64,12 @@ class _ReportarDanioPageState extends State<ReportarDanioPage> {
     final reporte = Reporte(titulo: _tTitulo.text.trim(), descripcion: _tDesc.text.trim(), lat: _lat!, lng: _lng!);
     // TODO: llamar a repo para enviar vía API
     debugPrint('Reporte JSON: ${reporte.toJson()}');
+    
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Enviado (mock)')));
+    
+    final repo = ReportesRepository(ApiService());
+    await repo.crearReporte(reporte);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reporte enviado')));
   }
+  
 }

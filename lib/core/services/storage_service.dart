@@ -9,4 +9,8 @@ class StorageService {
     final sp = await SharedPreferences.getInstance();
     return sp.getString('token');
   }
+  Future<void> clearToken() async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.remove('token');
+  }
 }
