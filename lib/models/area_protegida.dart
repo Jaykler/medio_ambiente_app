@@ -1,17 +1,42 @@
+//Modificado por libe 
 class AreaProtegida {
-  final int id;
+  final String id;
   final String nombre;
+  final String tipo;
   final String descripcion;
-  final double lat;
-  final double lng;
+  final String ubicacion;
+  final String superficie;
+  final String imagen;
+  final double latitud;
+  final double longitud;
 
-  AreaProtegida({required this.id, required this.nombre, required this.descripcion, required this.lat, required this.lng});
+  // Getters para compatibilidad con el mapa existente
+  double get lat => latitud;
+  double get lng => longitud;
 
-  factory AreaProtegida.fromJson(Map<String, dynamic> j) => AreaProtegida(
-    id: (j['id'] ?? 0) as int,
-    nombre: (j['nombre'] ?? '') as String,
-    descripcion: (j['descripcion'] ?? '') as String,
-    lat: double.tryParse('${j['lat'] ?? j['latitude'] ?? 0}') ?? 0,
-    lng: double.tryParse('${j['lng'] ?? j['longitude'] ?? 0}') ?? 0,
-  );
+  AreaProtegida({
+    required this.id,
+    required this.nombre,
+    required this.tipo,
+    required this.descripcion,
+    required this.ubicacion,
+    required this.superficie,
+    required this.imagen,
+    required this.latitud,
+    required this.longitud,
+  });
+
+  factory AreaProtegida.fromJson(Map<String, dynamic> json) {
+    return AreaProtegida(
+      id: json['id']?.toString() ?? '',
+      nombre: json['nombre']?.toString() ?? '',
+      tipo: json['tipo']?.toString() ?? '',
+      descripcion: json['descripcion']?.toString() ?? '',
+      ubicacion: json['ubicacion']?.toString() ?? '',
+      superficie: json['superficie']?.toString() ?? '',
+      imagen: json['imagen']?.toString() ?? '',
+      latitud: double.tryParse(json['latitud']?.toString() ?? '0') ?? 0.0,
+      longitud: double.tryParse(json['longitud']?.toString() ?? '0') ?? 0.0,
+    );
+  }
 }

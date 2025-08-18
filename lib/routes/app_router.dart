@@ -8,12 +8,23 @@ import 'package:medio_ambiente_app/modules/noticias/noticias_page.dart';
 import 'package:medio_ambiente_app/modules/videos/videos_page.dart';
 import 'package:medio_ambiente_app/modules/medidas/medidas_page.dart';
 import 'package:medio_ambiente_app/modules/equipo/equipo_page.dart';
+import 'package:medio_ambiente_app/modules/sobre_nosotros/sobre_nosotros_page.dart';
+import 'package:medio_ambiente_app/modules/areas_protegidas/areas_list_page.dart'; // libe djg
+import 'package:medio_ambiente_app/modules/areas_protegidas/area_detail_page.dart'; //libedjg
+import 'package:medio_ambiente_app/models/area_protegida.dart'; // libe djg
 import 'app_routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.inicio:
       return MaterialPageRoute(builder: (_) => const InicioPage());
+    case AppRoutes.sobreNosotros:
+      return MaterialPageRoute(builder: (_) => const SobreNosotrosPage());
+    case AppRoutes.areasProtegidas: 
+      return MaterialPageRoute(builder: (_) => const AreasListPage());
+    case AppRoutes.areaDetail: 
+      final area = settings.arguments as AreaProtegida;
+      return MaterialPageRoute(builder: (_) => AreaDetailPage(area: area));
     case AppRoutes.normativas:
       return MaterialPageRoute(builder: (_) => const NormativasPage());
     case AppRoutes.pdf:

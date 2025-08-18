@@ -14,6 +14,8 @@ class InicioPage extends StatelessWidget {
     ];
 
     final opciones = [
+      {'title': 'Sobre Nosotros', 'route': AppRoutes.sobreNosotros, 'icon': Icons.info},//libe djg
+      {'title': 'Áreas Protegidas', 'route': AppRoutes.areasProtegidas, 'icon': Icons.nature_people}, // libe djg
       {'title': 'Servicios', 'route': AppRoutes.servicios, 'icon': Icons.handshake},
       {'title': 'Noticias', 'route': AppRoutes.noticias, 'icon': Icons.newspaper},
       {'title': 'Videos', 'route': AppRoutes.videos, 'icon': Icons.video_collection},
@@ -104,6 +106,7 @@ class _OpcionCard extends StatelessWidget {
                   color: Colors.white,
                   letterSpacing: 1.1,
                 ),
+                textAlign: TextAlign.center, // ← Agregado para centrar textos largos
               ),
             ],
           ),

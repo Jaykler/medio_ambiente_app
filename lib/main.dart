@@ -57,14 +57,10 @@ class MyApp extends StatelessWidget {
           create: (_) => AreasProvider(AreasRepository(api)),
         ),
         ChangeNotifierProvider(create: (_) => ServiciosProvider(ServiciosRepository(api))),
-    ChangeNotifierProvider(create: (_) => NoticiasProvider(NoticiasRepository(api))),
-    ChangeNotifierProvider(create: (_) => VideosProvider(VideosRepository(api))),
-    ChangeNotifierProvider(create: (_) => MedidasProvider(MedidasRepository(api))),
-    ChangeNotifierProvider(create: (_) => EquipoProvider(EquipoRepository(api))),
-        // → Cuando agregues más módulos (Servicios, Noticias, etc.),
-        //   crea aquí sus Providers con el mismo 'api'
-        // ChangeNotifierProvider(create: (_) => ServiciosProvider(ServiciosRepository(api))),
-        // ChangeNotifierProvider(create: (_) => NoticiasProvider(NoticiasRepository(api))),
+        ChangeNotifierProvider(create: (_) => NoticiasProvider(NoticiasRepository(api))),
+        ChangeNotifierProvider(create: (_) => VideosProvider(VideosRepository(api))),
+        ChangeNotifierProvider(create: (_) => MedidasProvider(MedidasRepository(api))),
+        ChangeNotifierProvider(create: (_) => EquipoProvider(EquipoRepository(api))),
       ],
       child: MaterialApp(
         title: 'Medio Ambiente RD',
