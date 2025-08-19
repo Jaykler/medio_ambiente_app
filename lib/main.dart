@@ -3,10 +3,11 @@ import 'package:medio_ambiente_app/data/providers/areas_provider.dart';
 import 'package:medio_ambiente_app/data/providers/auth_provider.dart';
 import 'package:medio_ambiente_app/data/providers/normativas_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:medio_ambiente_app/modules/shell/main_shell.dart';
 // Services
 import 'core/services/api_service.dart';
 import 'core/services/storage_service.dart';
+import 'data/providers/mis_reportes_provider.dart';
 
 // Repositories
 import 'data/repositories/normativas_repository.dart';
@@ -17,6 +18,7 @@ import 'data/repositories/noticias_repository.dart';
 import 'data/repositories/videos_repository.dart';
 import 'data/repositories/medidas_repository.dart';
 import 'data/repositories/equipo_repository.dart';
+import 'data/repositories/reportes_repository.dart';
 
 // Providers nuevos
 import 'data/providers/servicios_provider.dart';
@@ -61,19 +63,30 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider(create: (_) => VideosProvider(VideosRepository(api))),
     ChangeNotifierProvider(create: (_) => MedidasProvider(MedidasRepository(api))),
     ChangeNotifierProvider(create: (_) => EquipoProvider(EquipoRepository(api))),
+    ChangeNotifierProvider(create: (_) => MisReportesProvider(ReportesRepository(api))),
+    ChangeNotifierProvider(create: (_) => AuthProvider(AuthRepository(api, storage))),
+    ChangeNotifierProvider(create: (_) => AreasProvider(AreasRepository(api))),
+    ChangeNotifierProvider(create: (_) => NormativasProvider(NormativasRepository(api))),
         // → Cuando agregues más módulos (Servicios, Noticias, etc.),
         //   crea aquí sus Providers con el mismo 'api'
         // ChangeNotifierProvider(create: (_) => ServiciosProvider(ServiciosRepository(api))),
         // ChangeNotifierProvider(create: (_) => NoticiasProvider(NoticiasRepository(api))),
       ],
+      // child: MaterialApp(
+      //   title: 'Medio Ambiente RD',
+      //   theme: ThemeData(
+      //     useMaterial3: true,
+      //     colorSchemeSeed: const Color(0xFF2E7D32),
+      //   ),
+      //   initialRoute: AppRoutes.inicio,
+      //   onGenerateRoute: generateRoute,
+      // ),
       child: MaterialApp(
         title: 'Medio Ambiente RD',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorSchemeSeed: const Color(0xFF2E7D32),
-        ),
-        initialRoute: AppRoutes.inicio,
-        onGenerateRoute: generateRoute,
+        theme: ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF49BA86)),
+        home: const MainShell(),           // 👈 en vez de initialRoute/onGenerateRoute
+        // Si prefieres mantener onGenerateRoute, puedes:
+        // initialRoute: AppRoutes.shell, y registrar esa ruta al MainShell.
       ),
     );
   }

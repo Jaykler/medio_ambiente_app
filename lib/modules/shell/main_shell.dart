@@ -29,7 +29,7 @@ class _MainShellState extends State<MainShell> {
       const InicioPage(),
       const NormativasPage(),
       const MapaAreasPage(),
-      //auth.isLogged ? const MisReportesPage() : const LoginPage(), // protegido por sesión    MIRAR AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+      auth.isLogged ? const MisReportesPage() : const LoginPage(), // protegido por sesión
     ];
 
     return Scaffold(
@@ -42,6 +42,7 @@ class _MainShellState extends State<MainShell> {
           NavigationDestination(icon: Icon(Icons.picture_as_pdf_outlined), selectedIcon: Icon(Icons.picture_as_pdf), label: 'Normativas'),
           NavigationDestination(icon: Icon(Icons.map_outlined), selectedIcon: Icon(Icons.map), label: 'Mapa'),
           NavigationDestination(icon: Icon(Icons.report_outlined), selectedIcon: Icon(Icons.report), label: 'Reportes'),
+          
         ],
       ),
       // FAB solo visible en pestaña "Reportes" y si hay sesión

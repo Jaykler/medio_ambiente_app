@@ -23,6 +23,7 @@ dependencies:
 
   # (Opcional) Carousel para Inicio
   carousel_slider: ^5.0.0
+  flutter_map_marker_cluster: ^1.4.0
 
 dev_dependencies:
   flutter_test:

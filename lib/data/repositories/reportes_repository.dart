@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:medio_ambiente_app/core/services/api_service.dart';
 import 'package:medio_ambiente_app/core/constants/endpoints.dart';
 import 'package:medio_ambiente_app/models/reporte.dart';
@@ -13,9 +12,9 @@ class ReportesRepository {
     if (!ok) throw Exception(json['mensaje'] ?? 'No se pudo enviar el reporte');
   }
 
-  Future<List<Map<String, dynamic>>> misReportes() async {
+  Future<List<Reporte>> misReportes() async {
     final json = await api.getJson(Endpoints.misReportes);
     final list = (json['data'] ?? json['reportes'] ?? []) as List;
-    return list.cast<Map<String, dynamic>>();
+    return list.map((e) => Reporte.fromJson(e as Map<String, dynamic>)).toList();
   }
 }

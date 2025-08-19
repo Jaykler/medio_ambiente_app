@@ -9,4 +9,8 @@ class AppRoutes {
   static const videos = '/videos';
   static const medidas = '/medidas';
   static const equipo = '/equipo';
+  static const mapaReportes = '/mapa-reportes';
+  static const shell = '/shell';
+  static const login = '/login';
+
 }

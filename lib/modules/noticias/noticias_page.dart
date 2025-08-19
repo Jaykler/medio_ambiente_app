@@ -52,7 +52,7 @@ class _NoticiaTile extends StatelessWidget {
             ),
       title: Text(n.titulo),
       subtitle: Text(
-        [fechaStr, n.resumen].where((s) => s != null && s.isNotEmpty).join(' • '),
+        [fechaStr, n.resumen].where((s) => s.isNotEmpty).join(' • '),
         maxLines: 2, overflow: TextOverflow.ellipsis,
       ),
     );
